@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Backyard Chickens</title>
+    <style>
+        body {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            background-color: rgb(196, 255, 243);
+            background-image: url('file:///Users/wonahcasti/Desktop/7th%20Grade/MAGIC/Chicken%20Background.png');
+            /* Path to your image */
+            background-size: cover;
+            /* Scale the image to cover */
+            background-attachment: fixed;
+            /* Fix the image in place */
+        }
+
+        h1 {
+            font-family: fantasy;
+        }
+
+        .scroll-box {
+            width: 500px;
+            /* Set the width of the box */
+            height: 180px;
+            /* Set the height of the box */
+            border: 2px solid #000;
+            /* Add a border for visibility */
+            padding: 10px;
+            /* Add some padding inside the box */
+            overflow-y: scroll;
+            /* Enable vertical scrolling */
+            overflow-x: hidden;
+            /* Hide horizontal scrolling */
+            background-color: #e0fffa;
+            /* Optional: Background color */
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .framed {
+            border: 10px solid #000000;
+            /* Solid black border */
+            padding: 5px;
+            /* Space between image and border */
+            display: inline-block;
+            /* Ensure proper spacing */
+        }
+
+        .container {
+            display: flex;
+            /* Align children horizontally */
+            gap: 20px;
+            /* Space between the boxes */
+        }
+
+        #chat-container {
+            width: 400px;
+            height: 600px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+        }
+
+        #chat-box {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            border-bottom: 2px solid #ccc;
+        }
+
+        #messages {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message {
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .user {
+            align-self: flex-end;
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .ai {
+            align-self: flex-start;
+            background-color: #e2e2e2;
+        }
+
+        #input-container {
+            display: flex;
+            padding: 10px;
+            border-top: 2px solid #ccc;
+        }
+
+        #user-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        #send-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #send-button:hover {
+            background-color: #0056b3;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: #2f855a;
+            padding: 10px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #276749;
+        }
+
+        .section {
+            padding: 50px;
+            text-align: center;
+            height: 100vh;
+        }
+
+        .section:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <h1>Homepage</h1>
+    <p>This is a website with information on egg laying chickens, backyard chicken care, and pros and cons of some of
+        the most acclaimed chicken breeds.</p>
+    <div class="container" style="display: block; margin-bottom: 20px;">
+        <p class="scroll-box" style="display: inline-block"><strong>Basic Chicken Infromation:</strong> The chicken
+            <em>(gallus gallus domesticus)</em> is a large, roundish short-winged bird domesticated from the red
+            junglefowl of Southeast Asia around 8000 years ago. Chickens are mainly raised for food like meat and eggs,
+            while others are kept as pets or even cockfighting. They are common and widespread domestic animals with a
+            total population of over 25 billion as of 2023, with an annual production of over 50 billion birds. A hen
+            bred for laying can produce over 300 eggs per year. Chickens are also a part of varioud cultures, with
+            refrences in folklore, religion, and literature. </p>
+        <p class="scroll-box" style="display: inline-block"><strong>Introduction to Chicken Breeds:</strong> The breed
+            of chicken is important to your living space and your environment. It is important to get the appropriate
+            chicken when buying your new feathered friends. Each chicken is either a heritage breed () or a hybrid. Some
+            hybrids, if any of them lay fertilized eggs, will not give you more chickens of the same breed. Heritage
+            breeds must be from a parent and grandparent stock of breeds recognized by the American Poultry Association
+            (APA) prior to the mid-20th century. I personally like both heritage and hybrid breeds due to each chicken
+            breed's unique features and more. Also, chickens are also split into two groups based on meat and egg laying
+            birds. As their names suggest, meat birds are birds killed for meat and therefore have been bred to be
+            larger, therefore contain more wheat. Egg laying chickens are chicken breeds who have been bred for optimal
+            egg laying, whether it be egg laying consistancy, egg color, or how long chickens keep laying eggs.</p>
+
+        <p class="scroll-box" style="display: inline-block"><strong>Sour Crop in Chickens:</strong> The crop is a
+            sac-shaped organ located just above the breast but below the neckline. Sour crop is a fungal infection of
+            the crop. It occurs when the food in the crop begins to ferment. This is the result of a pH imbalance and
+            how this imbalance affects the natural bacteria in a chicken’s crop. Sour crop is usually an individual case
+            ailment. This means that it often only affects a single chicken. However, if a common trigger is consumed by
+            the whole flock, you may have several cases of sour crop on your hands. For example, if your whole flock
+            forages on long grasses or consumes moldy feed, they are all prone to getting sour crop. As a quick review,
+            an altered crop pH level is what allows bad bacteria, or fungus, to proliferate. There are several triggers
+            that can lead to crop issues in backyard chickens. Many of these triggers not only lead to sour crop, but
+            can also lead to crop impaction. Keep in mind that sour crop and impacted crop can be interrelated, with one
+            condition leading to the other. The easiest way to diagnose sour crop is to see if the crop is emptying
+            properly. Chickens generally stock up on food throughout the day, then the food slowly gets released from
+            the crop and digested throughout the night. If you suspect a sour crop issue, do a crop-fullness test. You
+            can do this test for an individual chicken by quarantining it or for your whole flock. Start by taking away
+            the food and water source in the evening. In the morning, feel the crop to see if it feels empty or full. An
+            empty crop will feel small, flat, and hard. A full crop will be easy to feel and will be squishy and soft. A
+            fully impacted crop will feel large and hard. A full crop or a hard impacted crop in the morning means your
+            chicken has a crop problem. When checking for sour crop, a full squishy crop accompanied by sour-smelling
+            breath is a sure sign of sour crop. You may also hear gurgling noises coming from the hen’s crop, which is
+            from the fermentation process. This is how to treat Sour Crop: First, quarantine the hen. Remember to give
+            it a safe, comfortable pen away from the flock. The chicken should not be provided with food and water at
+            this time. The crop is already full and hurridly fermenting its contents. You should also massage the
+            chicken's crop 3-4 times a day from throat to breast. Also, you should moniter the progress so you know if
+            you nees to contact a vet. Finally, when the chicken makes a recovery with a smaller and less squishy crop,
+            give the hen fresh drinking wate, but wait at least 12 more hours before giving it tiny bits of
+            easy-to-digest food. </p>
+        <p class="scroll-box" style="display: inline-block"><strong>Mite Infestation in Chickens:</strong> Chicken mites
+            are a common issue for backyard chicken keepers, and understanding their types, treatment, and prevention is
+            essential for maintaining a healthy flock. Mites are small parasites that can live on chickens or in their
+            environment, spreading quickly through direct contact or from wild birds. The most common types include
+            northern fowl mites, red mites, and scaly leg mites, each with unique characteristics and preferences.
+            Northern fowl mites thrive in cooler climates, while red mites prefer warmth and humidity. Scaly leg mites
+            burrow under the scales of chickens' feet and legs, causing discomfort and potential damage. Regular health
+            checks and monitoring for symptoms, such as decreased egg production, raised leg scales, or visible
+            parasites, can help identify infestations early. Effective treatment of chicken mites often involves a
+            combination of natural and chemical approaches. Options include diatomaceous earth, garlic juice sprays, and
+            more potent treatments like permethrin or Spinosad, which target both live mites and their eggs. Scaly leg
+            mites require a specific treatment process, including washing and oiling the legs and applying mite sprays.
+            The environment must also be treated thoroughly to prevent reinfestation, as mites can survive off hosts for
+            weeks. Coop cleaning, litter replacement, and applying mite treatments to roosts and crevices are critical
+            steps to eliminate parasites. For severe infestations, chemical treatments may need reapplication to address
+            newly hatched mites. Preventing mite infestations is key to keeping chickens healthy and stress-free.
+            Providing dust baths, securing coops from wild birds and rodents, and applying preventive sprays can reduce
+            the risk of exposure. Quarantining new birds and performing regular health checks are also vital measures.
+            While mites may bite humans, they cannot survive on them, making the main concern their impact on the flock.
+            By maintaining proper preventive practices and being vigilant about potential signs of infestation, chicken
+            keepers can ensure their flock remains productive and comfortable.</p>
+    </div>
+
+    <div id="chat-container">
+        <div id="chat-box">
+            <div id="messages"></div>
+        </div>
+        <div id="input-container">
+            <input type="text" id="user-input" placeholder="Type a message..." />
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+
+    <h2>Some Pictures</h2>
+    <img src="https://earthsciences.anu.edu.au/sites/prod.earthsciences.sca-lws06.anu.edu.au/files/BArnyard%20Chicken.jpg"
+        alt="Three chickens under a lemon tree." height="240" class="framed">
+    <img src="https://images.unsplash.com/photo-1535275226173-7ee8b465f0c1?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2hpY2tlbnxlbnwwfHwwfHx8MA%3D%3D"
+        alt="Many chickens pecking at the grass in a sunny lawn." height="240" class="framed">
+    <img src="https://www.thefrenchiefarm.com/wp-content/uploads/2020/03/DSC_0610-scaled.jpg"
+        alt="A cute chick shown next to a box of colorful chicken eggs." height="240" class="framed">
+
+    <h2>About</h2>
+    <ul>
+        <li>Paragraph</li>
+        <li>Paragraph</li>
+    </ul>
+</body>
+
+</html>
