@@ -3,8 +3,6 @@ import axios from 'axios';
 const API_URL = "https://api.openai.com/v1";
 
 
-const OPENAI_API_KEY = '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'; // Replace with your API key
-
 const sendButton = document.getElementById('send-button');
 const userInput = document.getElementById('user-input');
 const messagesContainer = document.getElementById('messages');
