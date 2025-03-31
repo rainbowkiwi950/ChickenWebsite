@@ -61,24 +61,29 @@ app.post('/generate-questions', async (req, res) => {
 
     try {
         // Make a request to the OpenAI API
-        const response = await axios.post('https://api.openai.com/v1/completions', {
-            model: "text-davinci-003",  // You can use other models as needed
-            prompt: prompt,
-            max_tokens: 200, // Controls the length of the response
-            temperature: 0.7, // Adjusts randomness (higher = more creative)
-            n: 1
-        }, {
+        const response = await fetch("https://api.openai.com/v1/chat/completions", {
+            method: 'POST',
             headers: {
-                'Authorization': `Bearer ${API_KEY}`
-            }
+                'Authorization': `Bearer ${API_KEY}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                model: "gpt-4o-mini",  // Ensure the model name is correct
+                messages: [
+                    { role: "user", content: prompt }
+                ],
+                max_tokens: 200,
+                temperature: 0.7,
+                n: 1
+            })
         });
 
-        // Extract the generated text from the response
-        const questions = response.data.choices[0].text.trim().split('\n');
-        res.json({ questions });
+        const dataResponse = await response.json();
+        console.log(dataResponse);
+        res.json(dataResponse.choices[0].message.content.trim().split('\n')); // Return the API response
     } catch (error) {
         console.error("Error generating questions: ", error);
-        res.status(500).send("Error generating questions.");
+        res.status(500).json("Error generating questions.");
     }
 });
 

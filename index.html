@@ -274,9 +274,9 @@
                 family and friends. She is deeply opposed to animal cruelty, as well as the ill treatment of any
                 organism. Wonah invites you to explore her first chicken website and foster your love in the environment
                 as well as all living things.</p>
-            <img src="file:///Users/wonahcasti/ChickenWebsite/Twizz00.jpg"
+            <img src="Data/Twizz00.jpg"
                 alt="My black cat looking at me while walking on red brick." height="250" class="framed">
-            <img src="file:///Users/wonahcasti/ChickenWebsite/Twizz01.jpg" alt="My black cat dozing in yard."
+            <img src="Data/Twizz01.jpg" alt="My black cat dozing in yard."
                 height="250" class="framed">
             <img src="https://www.computersciencedegreehub.com/wp-content/uploads/2023/02/shutterstock_535124956-scaled.jpg"
                 alt="A fantastical picture depicting code in a 3D format." height="250" class="framed">
@@ -507,7 +507,7 @@
                 const topic = topicSelect.value;
         
                 // Fetch questions from the server (which calls GPT)
-                const response = await fetch('/generate-questions', {
+                const response = await fetch('http://localhost:3000/generate-questions', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -516,6 +516,7 @@
                 });
         
                 const data = await response.json();
+                console.log(data);
                 displayQuestions(data.questions);
             }
         
@@ -523,7 +524,7 @@
                 const questionContainer = document.getElementById("question-container");
                 questionContainer.innerHTML = ''; // Clear previous questions
         
-                questions.forEach(question => {
+                questions.map(question => {
                     const questionElem = document.createElement('p');
                     questionElem.textContent = question;
                     questionContainer.appendChild(questionElem);
@@ -539,19 +540,19 @@
             
             <p> Pickup</p>
 
-        <img src="file:///Users/wonahcasti/ChickenWebsite/ChickenPickup00.JPG"
+        <img src="Data/ChickenPickup00.JPG"
             alt="A girl standing in front of a chick pickup truck." height="350" width="400" class="framed"
             style="border-radius: 50%;  object-fit: cover;">
 
         <p> Week-Old Chicks</p>
 
-        <img src="file:///Users/wonahcasti/ChickenWebsite/ChickPic00.jpg" alt="Chick on turf." height="240"
+        <img src="Data/ChickPic00.jpg" alt="Chick on turf." height="240"
             class="framed">
 
-        <img src="file:///Users/wonahcasti/ChickenWebsite/ChickPic02.jpg" alt="Chick on turf." height="240"
+        <img src="Data/ChickPic02.jpg" alt="Chick on turf." height="240"
             class="framed">
 
-        <img src="file:///Users/wonahcasti/ChickenWebsite/ChickPic01.JPG" alt="Chick on turf." height="240"
+        <img src="Data/ChickPic01.JPG" alt="Chick on turf." height="240"
             class="framed">
 
         </div>
