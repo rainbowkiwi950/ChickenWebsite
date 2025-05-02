@@ -5,6 +5,8 @@ import express, { json } from "express";
 import fetch from "node-fetch";
 import { promises as fsPromises } from "fs"; // Use fs.promises for async/await
 
+
+
 // Required for dotenv to load environment variables from .env file
 config();
 
@@ -57,7 +59,7 @@ app.post('/generate-questions', async (req, res) => {
     const { topic } = req.body;
 
     // Define the prompt to ask the GPT model to generate questions for the selected topic
-    const prompt = `Generate 5 questions about ${topic} for a quiz. Each question should have 4 multiple-choice answers.`;
+    const prompt = `Generate exactly 5 multiple-choice questions about chicken ${topic} with 4 possible answers for each question. Make sure all questions are about chickens and have 4 answers each.`;
 
     try {
         // Make a request to the OpenAI API
@@ -72,12 +74,12 @@ app.post('/generate-questions', async (req, res) => {
                 messages: [
                     { role: "user", content: prompt }
                 ],
-                max_tokens: 200,
-                temperature: 0.7,
-                n: 1
+                // max_tokens: 200,
+                // temperature: 0.7,
+                // n: 1
             })
         });
-
+        console.log("Response from OpenAI API: ", response);
         const dataResponse = await response.json();
         console.log(dataResponse);
         res.json(dataResponse.choices[0].message.content.trim().split('\n')); // Return the API response

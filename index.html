@@ -5,12 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Backyard Chickens</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
             background-color: rgb(196, 255, 243);
-            background-image: url('file:///Users/wonahcasti/Desktop/7th%20Grade/MAGIC/Chicken%20Background.png');
+            background-image: url('Data/ChickenBackground.png');
             /* Path to your image */
             background-size: cover;
             /* Scale the image to cover */
@@ -174,8 +173,8 @@
             display: block;
         }
 
-
         .quiz-container {
+            display: none;  /* Initially hidden */
             background-color: white;
             padding: 20px;
             border-radius: 8px;
@@ -196,6 +195,30 @@
 
         button:hover {
             background-color: #0056b3;
+        }
+        
+        .answer-btn {
+            padding: 12px;
+            font-size: 18px;
+            width: 80%;
+            max-width: 350px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left; /* Left-align the text inside the buttons */
+            padding-left: 20px; /* Ensure the text is not too close to the button edge */
+            transition: background-color 0.3s ease;
+        }
+
+        .answer-btn:hover {
+            background-color: #45a049; /* Change color on hover */
+        }
+
+        .next-button-container {
+    text-align: center; /* Centers the "Next" button */
+    margin-top: 20px; /* Adds space between the answers and the "Next" button */
         }
 
         #answers {
@@ -218,38 +241,53 @@
             background-color: #e2e6ea;
         }
 
+
+        #answers-1 {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Align buttons to the left */
+            gap: 20px; /* Increase space between the buttons */
+            width: 100%;
+        }
+
         .containertwo {
-            display: flex; /* Set the container to use flexbox */
-            align-items: center; /* Vertically align items (optional) */
-            justify-content: flex-start; /* Align items to the left (default) */
-            gap: 20px; /* Space between the image and text */
+            display: flex;
+            /* Set the container to use flexbox */
+            align-items: center;
+            /* Vertically align items (optional) */
+            justify-content: flex-start;
+            /* Align items to the left (default) */
+            gap: 20px;
+            /* Space between the image and text */
         }
 
         .containertwo img {
-            width: 320px; /* Set the image size */
-            height: auto; /* Maintain aspect ratio */
+            width: 320px;
+            /* Set the image size */
+            height: auto;
+            /* Maintain aspect ratio */
         }
 
         .containertwo .text {
-            font-size: 18px; /* Adjust text size */
-            max-width: 500px; /* Optional: Set a maximum width for text */
+            font-size: 18px;
+            /* Adjust text size */
+            max-width: 500px;
+            /* Optional: Set a maximum width for text */
         }
 
-        .vertical-line {
-            border-left: 3px solid black; /* Creates a vertical line */
-            height: 300px; /* Adjust height as needed */
-            width: 0; /* No width, just a line */
-            margin-left: 20px; /* Optional: Adds some space from the left side */
-            justify-content: flex-start; /* Align the items to the left */
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 2s linear infinite;
         }
 
-        .vertical-line {
-            border-left: 3px solid black; /* Vertical line */
-            height: 200px; /* Set height of the line */
-            width: 0; /* No width, just a line */
-            margin-top: 10px; /* Add space between the image and the line */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
-
     </style>
 </head>
 
@@ -274,17 +312,16 @@
                 family and friends. She is deeply opposed to animal cruelty, as well as the ill treatment of any
                 organism. Wonah invites you to explore her first chicken website and foster your love in the environment
                 as well as all living things.</p>
-            <img src="Data/Twizz00.jpg"
-                alt="My black cat looking at me while walking on red brick." height="250" class="framed">
-            <img src="Data/Twizz01.jpg" alt="My black cat dozing in yard."
-                height="250" class="framed">
+            <img src="Data/Twizz00.jpg" alt="My black cat looking at me while walking on red brick." height="250"
+                class="framed">
+            <img src="Data/Twizz01.jpg" alt="My black cat dozing in yard." height="250" class="framed">
             <img src="https://www.computersciencedegreehub.com/wp-content/uploads/2023/02/shutterstock_535124956-scaled.jpg"
                 alt="A fantastical picture depicting code in a 3D format." height="250" class="framed">
             <img src="https://www.reagent.co.uk/wp-content/uploads/what/is/what-is-stem-education.jpg"
                 alt="A sketch of floating STEM components suspended between someone's hands" height="250"
                 class="framed">
 
-                <p style="font-size: 25px;">Here's some basic information you might want to know:</p>
+            <p style="font-size: 25px;">Here's some basic information you might want to know:</p>
 
             <div class="container" style="display: block; margin-bottom: 20px;">
                 <p class="scroll-box" style="display: inline-block"><strong>Basic Chicken Infromation:</strong> The
@@ -299,7 +336,7 @@
                     total population of over 25 billion as of 2023, with an annual production of over 50 billion birds.
                     A
                     hen
-                    bred for laying can produce over 300 eggs per year. Chickens are also a part of varioud cultures,
+                    bred for laying can produce over 300 eggs per year. Chickens are also a part of various cultures,
                     with
                     refrences in folklore, religion, and literature.
                 </p>
@@ -307,7 +344,7 @@
                     breed
                     of chicken is important to your living space and your environment. It is important to get the
                     appropriate
-                    chicken when buying your new feathered friends. Each chicken is either a heritage breed () or a
+                    chicken when buying your new feathered friends. Each chicken is either a heritage breed or a
                     hybrid.
                     Some
                     hybrids, if any of them lay fertilized eggs, will not give you more chickens of the same breed.
@@ -316,14 +353,14 @@
                     Association
                     (APA) prior to the mid-20th century. I personally like both heritage and hybrid breeds due to each
                     chicken
-                    breed's unique features and more. Also, chickens are also split into two groups based on meat and
+                    breed's unique features and more. Also, chickens are split into two groups based on meat and
                     egg
                     laying
-                    birds. As their names suggest, meat birds are birds killed for meat and therefore have been bred to
+                    birds. As their names suggest, meat birds are birds killed for their meat and therefore have been bred to
                     be
-                    larger, therefore contain more wheat. Egg laying chickens are chicken breeds who have been bred for
+                    larger to hold more meat. Egg laying chickens are chicken breeds who have been bred for
                     optimal
-                    egg laying, whether it be egg laying consistancy, egg color, or how long chickens keep laying eggs.
+                    egg laying, whether it be egg laying consistancy, egg color, or for the duration of a hen's laying career.
                 </p>
 
                 <p class="scroll-box" style="display: inline-block"><strong>Sour Crop in Chickens:</strong> The crop is
@@ -441,34 +478,72 @@
 
 
     <div id="chickengpt" class="tab-content scroll-box"
-    style="display:none; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; width: 1000px; text-align:left;">
-    <h2>ChickenGPT</h2>
-    <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; width: 1000px; text-align:left;">
-        Welcome! I'm ChickenGPT, your friendly chicken enthusiast. How can I help you with your chicken-related
-        questions today?</p>
+        style="display:none; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; width: 1000px; text-align:left;">
+        <h2>ChickenGPT</h2>
+        <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; width: 1000px; text-align:left;">
+            Welcome! I'm ChickenGPT, your friendly chicken enthusiast. How can I help you with your chicken-related
+            questions today?</p>
 
-    <!-- Chat Box Container -->
-    <div id="chat-box" style="display: flex; flex-direction: column; height: 400px; overflow-y: auto;">
-        <!-- Messages will go here -->
-        <div id="messages" style="flex-grow: 1; overflow-y: auto;">
-            <!-- Example message -->
-            <div class="message ai">Hi, I am ChickenGPT! How can I help you today?</div>
+        <!-- Chat Box Container -->
+        <div id="chat-box" style="display: flex; flex-direction: column; height: 400px; overflow-y: auto;">
+            <!-- Messages will go here -->
+            <div id="messages" style="flex-grow: 1; overflow-y: auto;">
+                <!-- Example message -->
+                <div class="message ai">Hi, I am ChickenGPT! How can I help you today?</div>
+            </div>
+
+            <!-- Input Container -->
+            <div id="input-container" style="padding: 10px; background: #f0f0f0;">
+                <input type="text" id="user-input" placeholder="Type a message..." style="width: 90%; padding: 8px;">
+                <button id="send-button" style="padding: 8px;">Send</button>
+            </div>
         </div>
 
-        <!-- Input Container -->
-        <div id="input-container" style="padding: 10px; background: #f0f0f0;">
-            <input type="text" id="user-input" placeholder="Type a message..." style="width: 90%; padding: 8px;">
-            <button id="send-button" style="padding: 8px;">Send</button>
-        </div>
+        <!-- Include the pigeon.js script (this is necessary for chatbot functionality) -->
+        <script src="messenger.js"></script>
     </div>
 
-    <!-- Include the pigeon.js script (this is necessary for chatbot functionality) -->
-    <script src="pigeon.js"></script>
-    </div>
+
 
 
     <div class="tab-content" id="games" style="display:none;">
-        <!-- First Quiz 
+
+        <h1>Games</h1>
+
+        <!-- Resting Screen before starting the quiz -->
+        <div id="resting-screen" class="resting-screen">
+            <h2 style = "font-family:'Courier New', Courier, monospace;">Welcome to the AI-Powered Chicken Quiz!</h2>
+            <p style="font-size: 16px;">Test your poultry knowledge by picking a topic below!</p>
+    
+            <!-- Topic Picker and Generate Button -->
+            <select id="topic-select">
+                <option value="health">Health</option>
+                <option value="breeds">Breeds</option>
+                <option value="care">Care</option>
+            </select>
+            <button class="generate-questions-btn" onclick="generateQuestions()">Generate Questions</button>
+        </div>
+        
+        <div id="loading-spinner" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+
+        <!-- Quiz Container (initially hidden) -->
+        <div id="quiz-container" class="quiz-container" style="display:none;">
+            <div id="question-container">
+                <p id="question-1">Loading question...</p>
+                <div id="answers-1"></div>
+            </div>
+            <div class="next-button-container">
+                <button id="next-button-1" onclick="nextQuestion()">Next</button>
+            </div>
+            <p id="score-1">Score: 0</p>
+        </div>
+    
+        <script src="AIquiz.js"></script>
+    </div>
+
+     <!-- First Quiz 
         <div class="quiz-container" id="quiz1">
             <h2>Chicken Care Quiz</h2>
             <div id="question-container-1">
@@ -492,100 +567,61 @@
     
         <script src="quiz.js"></script>
     -->
-        <select id="topic-select">
-            <option value="health">Health</option>
-            <option value="breeds">Breeds</option>
-            <option value="care">Care</option>
-        </select>
-        <button onclick="generateQuestions()">Generate Questions</button>
-        
-        <div id="question-container"></div>
-        
-        <script>
-            async function generateQuestions() {
-                const topicSelect = document.getElementById("topic-select");
-                const topic = topicSelect.value;
-        
-                // Fetch questions from the server (which calls GPT)
-                const response = await fetch('http://localhost:3000/generate-questions', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ topic: topic })
-                });
-        
-                const data = await response.json();
-                console.log(data);
-                displayQuestions(data.questions);
-            }
-        
-            function displayQuestions(questions) {
-                const questionContainer = document.getElementById("question-container");
-                questionContainer.innerHTML = ''; // Clear previous questions
-        
-                questions.map(question => {
-                    const questionElem = document.createElement('p');
-                    questionElem.textContent = question;
-                    questionContainer.appendChild(questionElem);
-                });
-            }
-        </script>
-    </div>
 
+    
     <div id="pictures" class="tab-content" style="display:none;">
         <h2> Pictures</h2>
         <li style="text-align: left;"> Timeline of my hens</li>
-        <div class="containertwo"  >
-            
+        <div class="containertwo">
+
             <p> Pickup</p>
 
-        <img src="Data/ChickenPickup00.JPG"
-            alt="A girl standing in front of a chick pickup truck." height="350" width="400" class="framed"
-            style="border-radius: 50%;  object-fit: cover;">
+            <img src="Data/ChickenPickup00.JPG" alt="A girl standing in front of a chick pickup truck." height="350"
+                width="400" class="framed" style="border-radius: 50%;  object-fit: cover;">
 
-        <p> Week-Old Chicks</p>
+            <p> Week-Old Chicks</p>
 
-        <img src="Data/ChickPic00.jpg" alt="Chick on turf." height="240"
-            class="framed">
+            <img src="Data/ChickPic00.jpg" alt="Chick on turf." height="240" class="framed">
 
-        <img src="Data/ChickPic02.jpg" alt="Chick on turf." height="240"
-            class="framed">
+            <img src="Data/ChickPic02.jpg" alt="Chick on turf." height="240" class="framed">
 
-        <img src="Data/ChickPic01.JPG" alt="Chick on turf." height="240"
-            class="framed">
+            <img src="Data/ChickPic01.JPG" alt="Chick on turf." height="240" class="framed">
 
         </div>
-    </div>
 
+        
+    </div>
+    
     <div id="contact" class="tab-content" style="display:none;">
         <h2>Contact Us</h2>
         <div style="text-align: left;" class="containertwo">
-            <p style="font-size: 25px;">I'm here to help and answer any question you might have. I look forward to
-                hearing from you!</p>
-            <img src="file:///Users/wonahcasti/ChickenWebsite/CuteChickContacts.jpg" alt="Chick on turf."
-                class="framed">
+            <p style="font-size: 25px;">I'm here to help and answer any questions you might have. I look forward to hearing from you!</p>
+            <img src="Data/CuteChickContacts.jpg" alt="Chick on turf." class="framed">
         </div>
-
-        <form id="contact-form" action="send_form.php" method="POST" style="text-align: left;">
+    
+        <!-- Contact Form -->
+        <form id="contact-form" method="POST" style="text-align: left;">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required><br><br>
-        
+    
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required><br><br>
-        
+    
             <label for="message">Message:</label>
             <textarea id="message" name="message" rows="4" required></textarea><br><br>
-        
+    
             <button type="submit">Submit</button>
         </form>
-
-
-        </div>
+    
+        <!-- Include the latest version of the EmailJS SDK -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+        <!-- Link to your external JavaScript file (contact-form.js) -->
+        <script type="text/javascript" src="contact-form.js"></script>
     </div>
 
-    <script src="tabs.js"></script>
+<script src="tabs.js"></script>
 
-    </body>
+</body>
 
 </html>
