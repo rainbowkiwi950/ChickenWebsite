@@ -10,38 +10,21 @@ async function generateQuestions() {
     loadingSpinner.style.display = "block"; // Show loading spinner
 
     try {
-        let attempts = 0;
-        let data;
-        // Loop to retry fetching questions until 5 are returned
-        // while (attempts < 5) {
-            const response = await fetch('http://localhost:3000/generate-questions', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ topic: topic })
-            });
+        const response = await fetch('http://localhost:3000/generate-questions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ topic: topic })
+        });
 
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
 
-            data = await response.json();
-            quizQuestions = parseQuestions(data);  // Pass the questions to display function
-
-            // Check if we have at least 5 questions, if so break out of the loop
-            // if (quizQuestions.length >= 5) {
-            //     break;
-            // }
-
-            attempts++;
-        // }
-
-        // // If attempts reached limit and less than 5 questions, alert the user
-        // if (quizQuestions.length < 5) {
-        //     alert('Unable to fetch 5 questions. Please try again later.');
-        //     return;
-        // }
+        const data = await response.json();
+        console.log("Received data:", data);  // Log the received data for debugging
+        quizQuestions = parseQuestions(data);  // Pass the questions to display function
 
         console.log(quizQuestions);  // Log the parsed questions to verify
         loadQuestion();  // Load the first question
@@ -79,59 +62,54 @@ function parseQuestions(data) {
     let questions = [];
     let currentQuestion = null;
     let currentAnswers = [];
+    let correctAnswer = null;
+    let expectingQuestion = false;
 
     for (let line of data) {
+        line = line.trim();
+
         if (line.startsWith("### Question")) {
-            if (currentQuestion) {
+            // Prepare to capture the question in the next line
+            expectingQuestion = true;
+
+            // Save the previous question block
+            if (currentQuestion && currentAnswers.length === 4 && correctAnswer) {
                 questions.push({
                     question: currentQuestion,
                     answers: currentAnswers,
-                    correctAnswer: currentAnswers[0] // Assuming the first answer is correct
+                    correctAnswer: correctAnswer
                 });
             }
+
+            // Reset for the next question
             currentQuestion = null;
             currentAnswers = [];
-        } else if (line.startsWith("What")) {
-            currentQuestion = line.trim();
-        } else if (line.startsWith("A)") || line.startsWith("B)") || line.startsWith("C)") || line.startsWith("D)")) {
-            currentAnswers.push(line.trim());
+            correctAnswer = null;
+        } else if (expectingQuestion) {
+            currentQuestion = line;
+            expectingQuestion = false;
+        } else if (/^[A-D]\)/.test(line)) {
+            currentAnswers.push(line);
+        } else if (line.startsWith("**Correct Answer:")) {
+            // Extract just the answer text, e.g. from "**Correct Answer: C) Foo**"
+            const match = line.match(/\*\*Correct Answer:\s*(.*)\*\*/);
+            if (match) {
+                correctAnswer = match[1].trim();
+            }
         }
     }
 
-    // Add the last question after the loop
-    if (currentQuestion) {
+    // Push the last question after the loop
+    if (currentQuestion && currentAnswers.length === 4 && correctAnswer) {
         questions.push({
             question: currentQuestion,
             answers: currentAnswers,
-            correctAnswer: currentAnswers[0] // Assuming the first answer is correct
+            correctAnswer: correctAnswer
         });
     }
 
     return questions;
 }
-
-// Display questions (this function is now commented out as we are using loadQuestion instead)
-// function displayQuestions(questions) {
-//     const questionContainer = document.getElementById("question-container");
-//     questionContainer.innerHTML = ''; // Clear previous questions
-
-//     questions.forEach(question => {
-//         const questionElem = document.createElement('p');
-//         questionElem.textContent = question.question; // Display the question text
-
-//         questionContainer.appendChild(questionElem);  // Add question to container
-        
-//         // Create answer options
-//         const answersContainer = document.createElement('div');
-//         question.answers.forEach(answer => {
-//             const answerButton = document.createElement('button');
-//             answerButton.textContent = answer;
-//             answersContainer.appendChild(answerButton);
-//         });
-        
-//         questionContainer.appendChild(answersContainer);  // Add answers to the question
-//     });
-// }
 
 // Check answer for the given quiz
 function checkAnswer(selectedAnswer, button) {
@@ -188,25 +166,3 @@ function nextQuestion() {
         endQuiz(); // End the quiz and show the resting screen
     }
 }
-
-
-
-
-// function displayQuestions(questions) {
-//     const questionContainer = document.getElementById("question-container");
-//     questionContainer.innerHTML = '';  // Clear previous questions
-//     console.log(questions);  // Log the parsed questions to check the structure
-//     // Check if questions is a valid array
-//     if (Array.isArray(questions) && questions.length > 0) {
-//         questions.map(question => {
-//             const questionElem = document.createElement('p');
-//             questionElem.textContent = question.question;
-//             questionContainer.appendChild(questionElem);
-//         });
-//     } else {
-//         // If no valid questions or empty array, display an error message
-//         const errorElem = document.createElement('p');
-//         errorElem.textContent = "No questions found or invalid format!";
-//         questionContainer.appendChild(errorElem);
-//     }
-// }

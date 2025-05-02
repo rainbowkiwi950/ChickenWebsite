@@ -59,7 +59,19 @@ app.post('/generate-questions', async (req, res) => {
     const { topic } = req.body;
 
     // Define the prompt to ask the GPT model to generate questions for the selected topic
-    const prompt = `Generate exactly 5 multiple-choice questions about chicken ${topic} with 4 possible answers for each question. Make sure all questions are about chickens and have 4 answers each.`;
+    // const prompt = `Generate exactly 5 multiple-choice questions about chicken ${topic} with 4 possible answers for each question. Make sure all questions are about chickens and have 4 answers each. Also return the correct answer always`;
+    const prompt = `Generate exactly 5 multiple-choice questions about chicken ${topic}. Each question should be followed by 4 answer choices labeled A) through D), and then a line starting with "**Correct Answer:" indicating the correct answer. Format the response exactly as follows:
+
+  ### Question 1
+  Question text here
+  A) Option A 
+  B) Option B
+  C) Option C
+  D) Option D
+  **Correct Answer: X) Correct Option**
+  ... (Repeat this format for all 5 questions)
+
+Do not include any explanations or extra commentary. Make sure the response follows this structure exactly.`;
 
     try {
         // Make a request to the OpenAI API
@@ -74,14 +86,9 @@ app.post('/generate-questions', async (req, res) => {
                 messages: [
                     { role: "user", content: prompt }
                 ],
-                // max_tokens: 200,
-                // temperature: 0.7,
-                // n: 1
             })
         });
-        console.log("Response from OpenAI API: ", response);
         const dataResponse = await response.json();
-        console.log(dataResponse);
         res.json(dataResponse.choices[0].message.content.trim().split('\n')); // Return the API response
     } catch (error) {
         console.error("Error generating questions: ", error);
