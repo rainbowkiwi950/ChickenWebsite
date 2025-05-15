@@ -15,6 +15,7 @@
             /* Scale the image to cover */
             background-attachment: fixed;
             /* Fix the image in place */
+
         }
 
         h1 {
@@ -282,11 +283,80 @@
             width: 40px;
             height: 40px;
             animation: spin 2s linear infinite;
+
         }
 
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+
+        #loading-spinner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute; /* Makes it float in the center */
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+
+        .timeline-container {
+            width: 80%;
+            max-width: 800px;
+            margin-left: 50px;
+
+        }
+
+        .timeline {
+            position: relative;
+            margin-left: 100px;
+            border-left: 4px solid #00aaff;
+            padding-left: 20px;
+            
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-date {
+            position: absolute;
+            left: -167px;
+            top: 0;
+            font-weight: bold;
+            font-size: 18px;
+            color: #555;
+
+        }
+
+        .timeline-content {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-content h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .timeline-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        #games {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Ensures it takes up full screen height */
+            position: relative;
         }
     </style>
 </head>
@@ -478,7 +548,7 @@
 
 
     <div id="chickengpt" class="tab-content scroll-box"
-        style="display:none; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; width: 1000px; text-align:left;">
+        style="display:none; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; width: 1000px; text-align:left; ">
         <h2>ChickenGPT</h2>
         <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; width: 1000px; text-align:left;">
             Welcome! I'm ChickenGPT, your friendly chicken enthusiast. How can I help you with your chicken-related
@@ -506,7 +576,7 @@
 
 
 
-    <div class="tab-content" id="games" style="display:none;">
+    <div class="tab-content" id="games" style="display:none;display: flex; justify-content: center;">
 
         <h1>Games</h1>
 
@@ -570,10 +640,48 @@
 
     
     <div id="pictures" class="tab-content" style="display:none;">
-        <h2> Pictures</h2>
-        <li style="text-align: left;"> Timeline of my hens</li>
-        <div class="containertwo">
+        <h2> Timeline</h2>
+        <div class="timeline-container">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Feb 18, 2025</div>
+                    <div class="timeline-content">
+                        <h3>Chicks Hatched</h3>
+                        </h3>
+                        <p>In Dare 2 Dream farms, Brook and Cloud took their first breaths.</p>
+                        <img src="Data/HatchingChick.jpg" alt="A chick hatching from an egg." width="300"
+                            class="framed">
+                    </div>
+                </div>
+    
+                <div class="timeline-item">
+                    <div class="timeline-date">Feb 28, 2025</div>
+                    <div class="timeline-content">
+                        <h3>Chicks Arrive</h3>
+                        <p>We pick up the chicks from a local feed store. Brook is an Easter Egger, and Cloud is a Welsummer.</p>
 
+            <img src="Data/ChickPic02.jpg" alt="Chick on turf." height="240" class="framed">
+
+                    </div>
+                </div>
+    
+                <div class="timeline-item">
+                    <div class="timeline-date">Mar 18, 2025</div>
+                    <div class="timeline-content">
+                        <h3>California Scrub Jay</h3>
+                        <p>The scrub jay mate in my area started attacking my chicks while they were outside. </p>
+                    </div>
+                </div>
+    
+                <div class="timeline-item">
+                    <div class="timeline-date">Apr 11, 2025</div>
+                    <div class="timeline-content">
+                        <h3>Coop Building and Integration</h3>
+                        <p>Today, I built the coop with the help of some friends and the chicks got their first taste of sleeping outside with the aid of their radiant heat brooder.</p>
+                    </div>
+                </div>
+            </div>
+<!-- 
             <p> Pickup</p>
 
             <img src="Data/ChickenPickup00.JPG" alt="A girl standing in front of a chick pickup truck." height="350"
@@ -585,7 +693,7 @@
 
             <img src="Data/ChickPic02.jpg" alt="Chick on turf." height="240" class="framed">
 
-            <img src="Data/ChickPic01.JPG" alt="Chick on turf." height="240" class="framed">
+            <img src="Data/ChickPic01.JPG" alt="Chick on turf." height="240" class="framed"> -->
 
         </div>
 
