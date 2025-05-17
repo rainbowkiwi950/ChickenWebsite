@@ -2,12 +2,21 @@ let currentQuestionIndex1 = 0;
 let quizQuestions = [];
 let score1 = 0;
 
+function showSpinner() {
+  const spinner = document.getElementById("loading-spinner");
+  spinner.style.opacity = "1";
+  spinner.style.pointerEvents = "auto";
+}
+
+function hideSpinner() {
+  const spinner = document.getElementById("loading-spinner");
+  spinner.style.opacity = "0";
+  spinner.style.pointerEvents = "none";
+}
 async function generateQuestions() {
+    showSpinner(); // ✅ show spinner before fetch
     const topicSelect = document.getElementById("topic-select");
     const topic = topicSelect.value;
-    const loadingSpinner = document.getElementById("loading-spinner");
-
-    loadingSpinner.style.display = "block"; // Show loading spinner
 
     try {
         const response = await fetch('http://localhost:3000/generate-questions', {
@@ -34,14 +43,14 @@ async function generateQuestions() {
         console.error('Error fetching data:', error);
     } finally {
         // Hide the loading spinner once the data is fetched
-        loadingSpinner.style.display = "none";
+        hideSpinner(); // ✅ hide spinner after completion
     }
 }
 
 function toggleScreens() {
     // Hide the resting screen and show the quiz screen
     document.getElementById("resting-screen").style.display = "none";
-    document.getElementById("quiz-container").style.display = "block";
+    document.getElementById("quiz-container").style.display = "flex";
 }
 
 function endQuiz() {
@@ -149,6 +158,7 @@ function loadQuestion() {
 
     currentQuestion.answers.forEach(answer => {
         const button = document.createElement("button");
+        button.style.backgroundColor = "blue";
         button.textContent = answer;
         button.onclick = () => checkAnswer(answer, button); // Attach the correct click handler
         button.classList.add("answer-btn");

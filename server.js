@@ -1,10 +1,8 @@
-
 import cors from "cors";
-import { config } from "dotenv";
-import express, { json } from "express";
+import {config} from "dotenv";
+import express, {json} from "express";
 import fetch from "node-fetch";
-import { promises as fsPromises } from "fs"; // Use fs.promises for async/await
-
+import {promises as fsPromises} from "fs"; // Use fs.promises for async/await
 
 
 // Required for dotenv to load environment variables from .env file
@@ -12,9 +10,16 @@ config();
 
 const app = express();
 
-// Allow requests from all origins (or specify allowed origins for security)
+const allowedOrigins = ["http://localhost:5500", "http://127.0.0.1:5500"];
+
 app.use(cors({
-    origin: "http://127.0.0.1:5500", // Replace with 'http://127.0.0.1:5500' for security
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
     methods: "GET,POST",
     allowedHeaders: "Content-Type,Authorization"
 }));
@@ -40,8 +45,8 @@ app.post("/api/chat", async (req, res) => {
             body: JSON.stringify({
                 model: "gpt-4o-mini",  // Ensure the model name is correct
                 messages: [
-                    { role: "system", content: data }, // Insert text file content here
-                    { role: "user", content: userMessage }
+                    {role: "system", content: data}, // Insert text file content here
+                    {role: "user", content: userMessage}
                 ],
             }),
         });
@@ -50,13 +55,13 @@ app.post("/api/chat", async (req, res) => {
         res.json(dataResponse); // Return the API response
     } catch (error) {
         console.error("Error:", error);
-        res.status(500).json({ error: "Server error" });
+        res.status(500).json({error: "Server error"});
     }
 });
 
 // Endpoint to generate questions based on the selected topic
 app.post('/generate-questions', async (req, res) => {
-    const { topic } = req.body;
+    const {topic} = req.body;
 
     // Define the prompt to ask the GPT model to generate questions for the selected topic
     // const prompt = `Generate exactly 5 multiple-choice questions about chicken ${topic} with 4 possible answers for each question. Make sure all questions are about chickens and have 4 answers each. Also return the correct answer always`;
@@ -84,7 +89,7 @@ Do not include any explanations or extra commentary. Make sure the response foll
             body: JSON.stringify({
                 model: "gpt-4o-mini",  // Ensure the model name is correct
                 messages: [
-                    { role: "user", content: prompt }
+                    {role: "user", content: prompt}
                 ],
             })
         });
