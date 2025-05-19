@@ -1,3 +1,3 @@
 # ChickenWebsite
 
-Officially deployed at [https://marbled-immense-parka.glitch.me/](https://marbled-immense-parka.glitch.me/)
+Officially deployed at [https://chick-encyclopedia.glitch.me/](https://chick-encyclopedia.glitch.me/)
